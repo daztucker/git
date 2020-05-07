@@ -47,7 +47,7 @@ int cmd__progress(int argc, const char **argv)
 		char *end;
 
 		if (skip_prefix(line.buf, "progress ", (const char **) &end)) {
-			uint64_t item_count = strtoull(end, &end, 10);
+			uint64_t item_count = strtoumax(end, &end, 10);
 			if (*end != '\0')
 				die("invalid input: '%s'\n", line.buf);
 			display_progress(progress, item_count);
@@ -55,10 +55,10 @@ int cmd__progress(int argc, const char **argv)
 				       (const char **) &end)) {
 			uint64_t byte_count, test_ms;
 
-			byte_count = strtoull(end, &end, 10);
+			byte_count = strtoumax(end, &end, 10);
 			if (*end != ' ')
 				die("invalid input: '%s'\n", line.buf);
-			test_ms = strtoull(end + 1, &end, 10);
+			test_ms = strtoumax(end + 1, &end, 10);
 			if (*end != '\0')
 				die("invalid input: '%s'\n", line.buf);
 			progress_test_ns = test_ms * 1000 * 1000;
