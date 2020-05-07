@@ -526,7 +526,7 @@ if test -n "$ASCIIDOC"; then
 	esac
 fi
 
-if grep -a ascii configure.ac >/dev/null; then
+if grep -a ascii configure.ac >/dev/null 2>&1; then
   AC_MSG_RESULT([Using 'grep -a' for sane_grep])
   SANE_TEXT_GREP=-a
 else
