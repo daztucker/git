@@ -1164,10 +1164,16 @@ GIT_CHECK_FUNC(strtoull,
 [NO_STRTOULL=YesPlease])
 GIT_CONF_SUBST([NO_STRTOULL])
 #
-# Define NO_STRTOUMAX if you don't have strtoumax in the C library.
+# Define NO_STRTOUMAX if you don't have strtoumax in the C library
+# or as a macro in inttypes.h.
 GIT_CHECK_FUNC(strtoumax,
 [NO_STRTOUMAX=],
-[NO_STRTOUMAX=YesPlease])
+[
+	AC_CHECK_DECL(strtoumax,
+	[NO_STRTOUMAX=],
+	[NO_STRTOUMAX=YesPlease],
+	[#include <inttypes.h>])
+])
 GIT_CONF_SUBST([NO_STRTOUMAX])
 #
 # Define NO_SETENV if you don't have setenv in the C library.
