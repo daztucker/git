@@ -127,6 +127,22 @@
 /* Approximation of the length of the decimal representation of this type. */
 #define decimal_length(x)	((int)(sizeof(x) * 2.56 + 0.5) + 1)
 
+#ifndef SIZE_MAX
+#define SIZE_MAX ((size_t)maximum_unsigned_value_of_type(size_t))
+#endif
+
+#ifndef LLONG_MIN
+#define LLONG_MIN ((long long)minimum_signed_value_of_type(long long))
+#endif
+
+#ifndef LLONG_MAX
+#define LLONG_MAX ((long long)maximum_signed_value_of_type(long long))
+#endif
+
+#ifndef ULLONG_MAX
+#define ULLONG_MAX ((unsigned long long)maximum_unsigned_value_of_type(unsigned long long))
+#endif
+
 #if defined(__sun__)
  /*
   * On Solaris, when _XOPEN_EXTENDED is set, its header file
