@@ -346,6 +346,10 @@ typedef uintmax_t timestamp_t;
 #define TIME_MAX UINTMAX_MAX
 #define TIME_MIN 0
 
+#if !defined(SCNuMAX) && defined(SCNu64)
+#define SCNuMAX SCNu64
+#endif
+
 #ifndef PATH_SEP
 #define PATH_SEP ':'
 #endif
